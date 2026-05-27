@@ -103,90 +103,26 @@ Our exercises rely heavily on `spaCy` (a fast, production-oriented industrial NL
 
 **Task**: Process the sentence: "Apple is looking at buying U.K. startup for $1 billion". Extract and print each token's text, canonical dictionary base form (Lemma), detailed part-of-speech tag, syntactic dependency label, and stop-word boolean status.
 
-```python
-# exercise_1.py
-import spacy
-
-# Load the industrial pipeline
-nlp = spacy.load("en_core_web_sm")
-
-text = "Apple is looking at buying U.K. startup for $1 billion"
-doc = nlp(text)
-
-# Target Header Format matching lecture slide 18
-print(f"{'TEXT':<10} | {'LEMMA':<10} | {'POS':<6} | {'TAG':<5} | {'DEP':<10} | {'STOP'}")
-print("-" * 60)
-
-# TODO: Loop through the 'doc' object and extract the requested token attributes
-for token in doc:
-    # Your code here
-    pass
-```
 
 ### Exercise 2: Data Dimensionality Reduction (Text Cleaning)
 **Background**: Financial data corpora contain significant noise. Pipelines allow us to drop data dimensionality and optimize performance by stripping out punctuation and stop-words that carry minimal contextual signal.
 
 **Task**: Clean the provided financial headline sentence. Return a clean list consisting exclusively of lowercase, fully lemmatized tokens with all stop words and punctuation removed.
 
-```python
-# exercise_2.py
-import spacy
 
-nlp = spacy.load("en_core_web_sm")
-headline = "The central bank is expected to announce a major policy change regarding interest rates on Monday."
-
-doc = nlp(headline)
-
-# TODO: Use list comprehension to parse the doc, discarding tokens where token.is_stop or token.is_punct are True
-# Save the lowercase base lemmas (.lemma_.lower()) of the remaining tokens
-cleaned_lemmas = []
-
-print("Original Headline:", headline)
-print("Cleaned Lowercase Lemmas:", cleaned_lemmas)
-```
 
 ### Exercise 3: Named Entity Recognition (NER) for Corporate Intelligence
 **Background**: Named Entity Recognition (NER) is a core pipeline module that identifies and classifies proper nouns inside text strings into pre-defined real-world categories.
 
 **Task**: Process the financial news narrative snippet below. Extract all detected entities and display their corresponding classifications, keeping an eye out for organizations (ORG), geopolitical entities/locations (GPE), and explicitly declared monetary values (MONEY).
 
-```python
-# exercise_3.py
-import spacy
-
-nlp = spacy.load("en_core_web_sm")
-news_feed = "JPMorgan Chase announced today that CEO Jamie Dimon will be visiting their new offices in Paris, France next month. The company plans to invest over €50 million in European markets by 2025."
-
-doc = nlp(news_feed)
-
-print(f"{'NAMED ENTITY':<25} | {'CLASSIFICATION LABEL'}")
-print("-" * 55)
-
-# TODO: Access the document's identified entities using 'doc.ents' and print the text (.text) and label (.label_)
-# Your code here
-```
 
 ### Exercise 4: Feedback Sentiment Parsing via TextBlob
 **Background**: TextBlob abstracts low-level algorithmic complexities to provide accessible sentiment scoring. It scores blocks of text along a Polarity spectrum ranging smoothly from -1.0 (highly negative) to +1.0 (highly positive), which is useful for analyzing market feedback.
 
 **Task**: Construct a Python script that instantiates TextBlob metrics over the provided positive and negative consumer review texts to dynamically extract and report polarity index variables.
 
-```python
-# exercise_4.py
-from textblob import TextBlob
 
-def get_text_polarity(text_input):
-    # TODO: Wrap text_input inside a TextBlob instance and return its polarity value
-    return 0.0
-
-review_positive = "The new trading platform is incredibly fast and user-friendly."
-review_negative = "I am very disappointed with the terrible customer service."
-
-print(f"Positive Review Polarity: {get_text_polarity(review_positive):.2f}")
-print(f"Negative Review Polarity: {get_text_polarity(review_negative):.2f}")
-```
-
----
 
 ## 🚀 Running the Lab Code
 
@@ -198,9 +134,4 @@ conda activate nlp_course
 Launch a script directly from the directory:
 ```bash
 python exercise_1.py
-```
-
-Alternatively, launch an interactive workspace session via Jupyter Notebook:
-```bash
-jupyter notebook
 ```
